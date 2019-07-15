@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { createBook } from '../../actions';
+import { createBook } from '../actions';
+
+export const categories = ["Action", "Biography", "History", "Horror", "Kids", "Learning", "Sci-Fi"];
 
 class BooksForm extends React.Component {
 
@@ -9,6 +11,22 @@ class BooksForm extends React.Component {
     title: '',
     category: ''
   };
+
+  componentDidMount() {
+    // add a few initial books
+    this.props.createBook({
+      title: 'Book 0',
+      category: categories[0]
+    });
+    this.props.createBook({
+      title: 'Book 1',
+      category: categories[1]
+    });
+    this.props.createBook({
+      title: 'Book 2',
+      category: categories[2]
+    });
+  }
 
   handleChange = e => {
     this.setState({
@@ -26,7 +44,6 @@ class BooksForm extends React.Component {
   }
 
   render() {
-    const categories = ["Action", "Biography", "History", "Horror", "Kids", "Learning", "Sci-Fi"];
 
     const { title, category } = this.state;
   
