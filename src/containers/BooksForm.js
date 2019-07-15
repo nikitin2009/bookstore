@@ -64,7 +64,7 @@ class BooksForm extends React.Component {
           <select 
             name="category"
             className="form-control mr-3 flex-fill" 
-            defaultValue={category}
+            value={category}
             onChange={this.handleChange}
             required
           >
