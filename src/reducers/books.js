@@ -10,10 +10,7 @@ export const books = (state = [], action) => {
         }
       ];
     case 'REMOVE_BOOK':
-      return [
-        ...state.slice(0, action.id),
-        ...state.slice(action.id + 1)
-      ];
+      return state.filter(book => book.id !== action.id);
     default:
       return state;
   }

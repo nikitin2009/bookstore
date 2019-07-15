@@ -1,6 +1,8 @@
-export const createBook = ({id, title, category}) => ({
+let nextBookId = 0
+
+export const createBook = ({title, category}) => ({
   type: 'CREATE_BOOK',
-  id,
+  id: nextBookId++,
   title,
   category
 });
