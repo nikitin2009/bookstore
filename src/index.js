@@ -1,12 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDom from 'react-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/App';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+
+// Add initial data
+store.dispatch({
+  type: 'CREATE_BOOK',
+  id: 1,
+  title: 'Book 1',
+  category: 'Biography'
+});
+store.dispatch({
+  type: 'CREATE_BOOK',
+  id: 2,
+  title: 'Book 2',
+  category: 'History'
+})
+
+ReactDom.render(
+  <Provider store={store} >
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
