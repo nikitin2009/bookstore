@@ -2,17 +2,16 @@ import React from 'react';
 
 const Book = ({ book, handleRemoveBook }) => {
   return (
-    <tr>
-      <td>{book.id}</td>
-      <td>{book.title}</td>
-      <td>{book.category}</td>
-      <td>
+    <div className="card mb-3">
+      <div className="card-body">
+        <div className="text-secondary">{book.category}</div>
+        <h4 className="card-title">{ book.title }</h4>
         <button
-          className="btn btn-danger"
+          className="btn btn-link card-link p-0"
           onClick={() => handleRemoveBook(book)}
         >Remove</button>
-      </td>
-    </tr>
+      </div>
+    </div>
   )
 }
 

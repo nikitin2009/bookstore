@@ -22,30 +22,16 @@ const BooksList = ({
 }) => {
   return (
     <>
-      <div className="text-right">
-        <CategoryFilter 
-          currentFilter={currentFilter}
-          handleFilterChange={changeFilter}
-        />
-      </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>TITLE</th>
-            <th>CATEGORY</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          { getVisibleBooks(books, currentFilter).map(book => (
-            <Book 
-              book={book} 
-              key={book.id} 
-              handleRemoveBook={removeBook} />
-          )) }
-        </tbody>
-      </table>
+      <CategoryFilter 
+        currentFilter={currentFilter}
+        handleFilterChange={changeFilter}
+      />
+      { getVisibleBooks(books, currentFilter).map(book => (
+        <Book 
+          book={book} 
+          key={book.id} 
+          handleRemoveBook={removeBook} />
+      )) }
     </>
   )
 }

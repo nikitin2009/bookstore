@@ -48,31 +48,36 @@ class BooksForm extends React.Component {
     const { title, category } = this.state;
   
     return (
-      <form 
-        className="form-inline"
-        onSubmit={this.handleSubmit} >
-        <input 
-          name="title"
-          className="form-control mr-2" 
-          type="text" 
-          placeholder="Title"
-          value={title}
-          onChange={this.handleChange} />
-        <select 
-          name="category"
-          className="form-control mr-2" 
-          defaultValue={category}
-          onChange={this.handleChange}
-        >
-          <option value="" disabled>Category</option>
-          { categories.map(cat => (
-            <option value={cat} key={cat}>
-              {cat}
-            </option>
-          )) }
-        </select>
-        <button type="submit" className="btn btn-primary">Add</button>
-      </form>
+      <>
+        <h5 className="text-muted text-uppercase mb-3">Add New Book</h5>
+        <form 
+          className="form-inline justify-content-between"
+          onSubmit={this.handleSubmit} >
+          <input 
+            name="title"
+            className="form-control mr-3 flex-fill" 
+            type="text" 
+            placeholder="Title"
+            value={title}
+            onChange={this.handleChange} 
+            required />
+          <select 
+            name="category"
+            className="form-control mr-3 flex-fill" 
+            defaultValue={category}
+            onChange={this.handleChange}
+            required
+          >
+            <option value="" disabled>Category</option>
+            { categories.map(cat => (
+              <option value={cat} key={cat}>
+                {cat}
+              </option>
+            )) }
+          </select>
+          <button type="submit" className="btn btn-primary flex-fill">Add Book</button>
+        </form>
+      </>
     )
   }
 
