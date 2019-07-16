@@ -1,18 +1,18 @@
-let nextBookId = 0
+let nextBookId = 0;
 
-export const createBook = ({title, category}) => ({
+export const createBook = ({ title, category }) => ({
   type: 'CREATE_BOOK',
   id: nextBookId++,
   title,
-  category
+  category,
 });
 
-export const removeBook = ({id}) => ({
+export const removeBook = ({ id }) => ({
   type: 'REMOVE_BOOK',
-  id
+  id,
 });
 
-export const changeFilter = (filter) => ({
+export const changeFilter = filter => ({
   type: 'CHANGE_FILTER',
-  filter
+  filter,
 });

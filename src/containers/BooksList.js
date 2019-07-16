@@ -1,11 +1,11 @@
 import React from 'react';
-
-import Book from '../components/Book';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { removeBook, changeFilter } from '../actions';
 
 import CategoryFilter from '../components/CategoryFilter';
+import Book from '../components/Book';
 
 const getVisibleBooks = (books, currentFilter) => {
   if (currentFilter === '') {
@@ -15,33 +15,39 @@ const getVisibleBooks = (books, currentFilter) => {
 };
 
 const BooksList = ({
-  books, 
-  removeBook, 
-  changeFilter,
-  currentFilter
-}) => {
-  return (
-    <>
-      <CategoryFilter 
-        currentFilter={currentFilter}
-        handleFilterChange={changeFilter}
+  books,
+  removeBook: removeBookDispatch,
+  changeFilter: changeFilterDispatch,
+  currentFilter,
+}) => (
+  <>
+    <CategoryFilter
+      currentFilter={currentFilter}
+      handleFilterChange={changeFilterDispatch}
+    />
+    { getVisibleBooks(books, currentFilter).map(book => (
+      <Book
+        book={book}
+        key={book.id}
+        handleRemoveBook={removeBookDispatch}
       />
-      { getVisibleBooks(books, currentFilter).map(book => (
-        <Book 
-          book={book} 
-          key={book.id} 
-          handleRemoveBook={removeBook} />
-      )) }
-    </>
-  )
-}
+    )) }
+  </>
+);
 
-const mapStateToProps = (state) => ({ 
+BooksList.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeBook: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
+  currentFilter: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
   books: state.books,
-  currentFilter: state.filter
+  currentFilter: state.filter,
 });
 
 export default connect(
-  mapStateToProps, 
-  { removeBook, changeFilter }
+  mapStateToProps,
+  { removeBook, changeFilter },
 )(BooksList);
