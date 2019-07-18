@@ -7,13 +7,6 @@ import { removeBook, changeFilter } from '../actions';
 import CategoryFilter from '../components/CategoryFilter';
 import Book from '../components/Book';
 
-const getVisibleBooks = (books, currentFilter) => {
-  if (currentFilter === '') {
-    return books;
-  }
-  return books.filter(book => book.category === currentFilter);
-};
-
 const BooksList = ({
   books,
   removeBook: removeBookDispatch,
@@ -25,7 +18,7 @@ const BooksList = ({
       currentFilter={currentFilter}
       handleFilterChange={changeFilterDispatch}
     />
-    { getVisibleBooks(books, currentFilter).map(book => (
+    { books.map(book => (
       <Book
         book={book}
         key={book.id}
@@ -43,8 +36,10 @@ BooksList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  books: state.books,
   currentFilter: state.filter,
+  books: state.filter
+    ? state.books.filter(({ category }) => category === state.filter)
+    : state.books,
 });
 
 export default connect(
