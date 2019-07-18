@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { categories } from '../containers/BooksForm';
+import categories from '../sample-data/categories';
 
 const CategoryFilter = ({ handleFilterChange, currentFilter }) => (
   <>

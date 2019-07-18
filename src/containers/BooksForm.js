@@ -4,31 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createBook } from '../actions';
 
-export const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+import categories from '../sample-data/categories';
 
 class BooksForm extends React.Component {
   state = {
     title: '',
     category: '',
   };
-
-  componentDidMount() {
-    // add a few initial books
-    const { createBook: createBookDispatch } = this.props;
-
-    createBookDispatch({
-      title: 'Book 0',
-      category: categories[0],
-    });
-    createBookDispatch({
-      title: 'Book 1',
-      category: categories[1],
-    });
-    createBookDispatch({
-      title: 'Book 2',
-      category: categories[2],
-    });
-  }
 
   handleChange = (e) => {
     this.setState({
