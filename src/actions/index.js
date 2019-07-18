@@ -1,9 +1,9 @@
-let nextBookId = 0;
+import uuid from 'uuid/v1';
 
 export const createBook = ({ title, category }) => ({
   type: 'CREATE_BOOK',
   book: {
-    id: nextBookId++,
+    id: uuid(),
     title,
     category,
   },
