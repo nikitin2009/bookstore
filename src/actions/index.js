@@ -9,7 +9,7 @@ export const createBook = ({ title, category }) => ({
   },
 });
 
-export const removeBook = ({ id }) => ({
+export const removeBook = id => ({
   type: 'REMOVE_BOOK',
   id,
 });

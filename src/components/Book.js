@@ -9,7 +9,7 @@ const Book = ({ book, handleRemoveBook }) => (
       <button
         type="button"
         className="btn btn-link card-link p-0"
-        onClick={() => handleRemoveBook(book)}
+        onClick={() => handleRemoveBook(book.id)}
       >
         Remove
       </button>
@@ -21,6 +21,7 @@ Book.propTypes = {
   book: PropTypes.shape({
     category: PropTypes.string,
     title: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
   handleRemoveBook: PropTypes.func.isRequired,
 };
