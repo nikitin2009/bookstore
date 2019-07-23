@@ -10,7 +10,7 @@ export const api = {
       throw new Error('Books were not loaded.');
     }
 
-    const { data: books } = await response.json();
+    const books = await response.json();
 
     return books;
   },
