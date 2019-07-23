@@ -24,11 +24,15 @@ class BooksList extends Component {
     } = this.props;
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <p>Loading...</p>;
     }
 
     if (error) {
-      return <div>Some error occurred when loading books: { error }</div>;
+      return <p>Some error occurred when loading books: { error }</p>;
+    }
+
+    if (books.length === 0) {
+      return <p>No books at the moment</p>;
     }
 
     return (

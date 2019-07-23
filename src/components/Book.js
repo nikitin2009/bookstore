@@ -21,7 +21,7 @@ Book.propTypes = {
   book: PropTypes.shape({
     category: PropTypes.string,
     title: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
   }).isRequired,
   handleRemoveBook: PropTypes.func.isRequired,
 };

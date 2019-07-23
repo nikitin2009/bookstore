@@ -29,10 +29,20 @@ const booksList = (state, action) => {
         error: action.payload,
       };
 
-    case 'CREATE_BOOK':
-      return [...state, { ...action.book }];
+    case 'ADD_BOOK':
+      return {
+        books: [...state.books, action.payload],
+        loading: false,
+        error: '',
+      };
+
     case 'REMOVE_BOOK':
-      return state.filter(book => book.id !== action.id);
+      return {
+        books: state.books.filter(book => book.id !== action.id),
+        loading: false,
+        error: '',
+      };
+
     default:
       return state;
   }

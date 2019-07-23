@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { createBook } from '../actions';
-
+import { api } from '../REST/api';
 import categories from '../sample-data/categories';
 
 class BooksForm extends React.Component {
@@ -32,12 +32,20 @@ class BooksForm extends React.Component {
 
   render() {
     const { title, category } = this.state;
+    const { loading, error } = this.props;
+
+    const errorMessage = error
+      ? <div className="alert alert-danger">{error}</div>
+      : '';
+    const submitButton = loading
+      ? <button type="submit" className="btn btn-primary flex-fill" disabled>Adding...</button>
+      : <button type="submit" className="btn btn-primary flex-fill">Add Book</button>;
 
     return (
       <>
         <h5 className="text-muted text-uppercase mb-3">Add New Book</h5>
         <form
-          className="form-inline justify-content-between"
+          className="form-inline justify-content-between mb-3"
           onSubmit={this.handleSubmit}
         >
           <input
@@ -63,8 +71,9 @@ class BooksForm extends React.Component {
               </option>
             )) }
           </select>
-          <button type="submit" className="btn btn-primary flex-fill">Add Book</button>
+          { submitButton }
         </form>
+        { errorMessage }
       </>
     );
   }
@@ -74,4 +83,13 @@ BooksForm.propTypes = {
   createBook: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createBook })(BooksForm);
+const mapStateToProps = ({ booksForm: { loading, error } }) => ({
+  loading,
+  error,
+});
+
+const mapDispatchToProps = dispatch => ({
+  createBook: createBook(api, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksForm);

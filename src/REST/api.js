@@ -28,8 +28,8 @@ export const api = {
       throw new Error('Book was not created.');
     }
 
-    const { data: book } = await response.json();
-
+    const book = await response.json();
+    
     return book;
   },
 
