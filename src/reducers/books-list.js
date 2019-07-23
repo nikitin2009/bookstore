@@ -38,7 +38,7 @@ const booksList = (state, action) => {
 
     case 'REMOVE_BOOK':
       return {
-        books: state.books.filter(book => book.id !== action.id),
+        books: state.books.filter(book => book.id !== action.payload),
         loading: false,
         error: '',
       };

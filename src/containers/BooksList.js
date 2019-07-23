@@ -8,7 +8,6 @@ import CategoryFilter from '../components/CategoryFilter';
 import Book from '../components/Book';
 
 class BooksList extends Component {
-
   componentDidMount() {
     this.props.fetchBooks();
   }
@@ -73,9 +72,9 @@ const mapStateToProps = ({ filter, booksList: { loading, error, books } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeBook,
   changeFilter,
   fetchBooks: fetchBooks(api, dispatch),
+  removeBook: removeBook(api, dispatch),
 });
 
 export default connect(
