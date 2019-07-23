@@ -81,6 +81,8 @@ class BooksForm extends React.Component {
 
 BooksForm.propTypes = {
   createBook: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ booksForm: { loading, error } }) => ({

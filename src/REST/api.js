@@ -29,7 +29,7 @@ export const api = {
     }
 
     const book = await response.json();
-    
+
     return book;
   },
 
