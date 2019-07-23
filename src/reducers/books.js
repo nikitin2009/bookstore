@@ -1,7 +1,34 @@
-import initialBooks from '../sample-data/books';
+const booksList = (state, action) => {
+  if (state === undefined) {
+    return {
+      books: [],
+      loading: true,
+      error: '',
+    };
+  }
 
-const books = (state = initialBooks, action) => {
   switch (action.type) {
+    case 'FETCH_BOOKS_REQUEST':
+      return {
+        books: [],
+        loading: true,
+        error: '',
+      };
+
+    case 'FETCH_BOOKS_SUCCESS':
+      return {
+        books: action.payload,
+        loading: false,
+        error: '',
+      };
+
+    case 'FETCH_BOOKS_FAILURE':
+      return {
+        books: [],
+        loading: false,
+        error: action.payload,
+      };
+
     case 'CREATE_BOOK':
       return [...state, { ...action.book }];
     case 'REMOVE_BOOK':
@@ -11,4 +38,4 @@ const books = (state = initialBooks, action) => {
   }
 };
 
-export default books;
+export default booksList;
