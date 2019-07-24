@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import categories from '../sample-data/categories';
 
-const CategoryFilter = ({ handleFilterChange, currentFilter }) => (
+const CategoryFilter = ({ handleFilterChange, filter }) => (
   <>
     <span className="mr-3">Filter by category:</span>
     <select
       className="custom-select w-auto my-3"
-      value={currentFilter}
+      value={filter}
       onChange={e => handleFilterChange(e.target.value)}
     >
       <option value="">All</option>
@@ -22,7 +22,7 @@ const CategoryFilter = ({ handleFilterChange, currentFilter }) => (
 );
 
 CategoryFilter.propTypes = {
-  currentFilter: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
   handleFilterChange: PropTypes.func.isRequired,
 };
 
